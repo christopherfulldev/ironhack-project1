@@ -2,11 +2,18 @@ body {
     margin: 0vw;
     padding: 0vw;
     font-family: Arial, Verdana, Tahoma, Sans-Serif;
+    display: grid;
+    background-image: url(/Media/Cored-do-Reggae.jpg);
+    background-size: 30vw;
+    height: 100vw;
+    width: 100vw;
+    background-position: left top;
 }
 
 #game {
     background-image: url(/Media/Cored-do-Reggae.jpg);
-    height: 45vw;
+    background-size: 30vw;
+    height: 100vw;
     width: 100vw;
     background-position: left top;
 }
@@ -19,10 +26,127 @@ body {
 .hello p {
     font-size: 3vw;
     text-align: center;
-    color: white;
+    color: rgba(0, 255, 34, 0.623);
 }
 
 .how {
+    margin-top: 14vw;
+    margin-left: 1vw;
+    width: 8vw;
+    height: 2vw;
+}
+
+.how h3 {
     align-self: flex-end;
-    color: red;
+    color: rgb(255, 196, 0);
+    font-size: 3vw ;
  }
+
+ #p0 {
+     margin: -44vw 0vw 5vw 0vw;
+ }
+ 
+ #p1 {
+     font-size: 2vw;
+     color: rgb(32, 248, 12);
+ }
+#p2 {
+    font-size: 2vw;
+    color: rgb(23, 2, 216);
+}
+
+#p3 {
+    margin: -9vw 0vw 0vw 60vw;
+    height: 4vw;
+    width: 6vw;
+    font-size: 1.5vw;
+    align-items: center;
+    align-content: center;
+}
+
+#camp {
+    width: 30vw;
+    height: 30vw;
+    display:flexbox;    
+    margin: -10vw 1vw 1vw 48vw;
+
+  }
+  
+  td {
+    border: 0.5vw solid black;
+    cursor: pointer;
+  }
+  
+  #camp td:hover {
+    background-color: #ddd;
+  }
+
+  .container {
+    width: 40vw;
+    height:40vw;
+    align-content: center;
+    margin: -5vw 0vw -10vw 17vw;
+  }
+  
+  .grid {
+    height: 50vw;
+    width: 40vw;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #dcd6bc;
+    border: 1vw solid #dcd6bc;
+  }
+  
+  div {
+    font-size: 2vw;
+    text-align: center;
+    font-family: 'Roboto Mono', monospace;
+  
+  }
+  .valid {
+    height: 4vw;
+    width: 4vw;
+    border: 0.5vw solid;
+    border-color: #f5f3eb #bab7a9 #bab7a9 #fff9db;
+    box-sizing: border-box;
+  }
+  
+  .checked {
+    height: 4vw;
+    width: 4vw;
+    border: 0.1vw solid;
+    background-color: #cecab7;
+    border-color: #9c998d;
+    box-sizing: border-box;
+  }
+  
+  .bomb {
+    height: 4vw;
+    width: 4vw;
+    border: 0.3vw solid;
+    border-color: #f5f3eb #bab7a9 #bab7a9 #fff9db;
+    box-sizing: border-box;
+  }
+  
+  .one {
+    color: #e76346;
+  }
+  
+  .two {
+    color: #4199d3;
+  }
+  
+  .three {
+    color: #57da59;
+  }
+  
+  .four{
+    color: #bb41d3;
+  }
+  
+  #result {
+    margin-top: 0.5vw;
+    color: #e76346;
+  }
+
+  
