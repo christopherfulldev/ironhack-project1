@@ -3,7 +3,6 @@ body {
     padding: 0vw;
     font-family: Arial, Verdana, Tahoma, Sans-Serif;
     display: grid;
-    background-image: url(/Media/Cored-do-Reggae.jpg);
     background-size: 30vw;
     height: 100vw;
     width: 100vw;
@@ -85,7 +84,7 @@ body {
     width: 40vw;
     height:40vw;
     align-content: center;
-    margin: -5vw 0vw -10vw 17vw;
+    margin: 0vw 0vw 0vw 32vw;
   }
   
   .grid {
@@ -130,6 +129,7 @@ body {
   
   .one {
     color: #e76346;
+    background-image: url("/home/visitante/ironhack/Project1/HTML/Media/folha verde.jpg");
   }
   
   .two {
