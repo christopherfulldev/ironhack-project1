@@ -13,11 +13,11 @@ document.addEventListener('DOMContentLoaded', () => { //tudooooooo dentro do DOM
     let playerOne = true;
     let playerTwo = false;
     let currentPlayer = document.getElementById ("currentPlayer");
-    //criador de campo com tudo exceto as variaveis "globais"
+    
     function createBoard() {
       flagsLeft.innerHTML = bombAmount;
   
-     //criador aleatorio de array usando sort e random
+     //manipulação de arrays
       const bombsArray = Array(bombAmount).fill('bomb');
       const emptyArray = Array(width*width - bombAmount).fill('valid');
       const gameArray = emptyArray.concat(bombsArray);
@@ -68,28 +68,29 @@ document.addEventListener('DOMContentLoaded', () => { //tudooooooo dentro do DOM
       }
     }
     
-    function handleClick (square, currentPlayer){
+    function handleClick (square, currentPlayer){ //handleClick foi adicionada para propiciar o modo multiplayer
       let clickValue = click(square, currentPlayer);
-              if(clickValue) {
-                let totalPlacar = Number(clickValue);
-                if (currentPlayer == 1) {
-                  let placar = leftZero.innerText;
-                  placar = Number(placar.replace(/^[0.]+/, ""));
-                  leftZero.innerText = placar < 9 ? "0" + (placar +totalPlacar) : placar +totalPlacar ;
-                } else {
-                  let placar2 = rightZero.innerText;
-                  placar2 = Number(placar2.replace(/^[0.]+/, ""));
-                  rightZero.innerText = placar2 < 9 ? "0" + (placar2 +totalPlacar) : placar2 +totalPlacar ;
-                }
-                
-              }
+      
+      if(clickValue) {
+        let totalPlacar = Number(clickValue);
+        if (currentPlayer == 1) {
+          let placar = leftZero.innerText;
+          placar = Number(placar.replace(/^[0.]+/, ""));
+          leftZero.innerText = placar < 9 ? "0" + (placar +totalPlacar) : placar +totalPlacar ;
+        } else {
+          let placar2 = rightZero.innerText;
+          placar2 = Number(placar2.replace(/^[0.]+/, ""));
+          rightZero.innerText = placar2 < 9 ? "0" + (placar2 +totalPlacar) : placar2 +totalPlacar ;
+        }
+        
+      }
     }
     
-    createBoard();
+    createBoard();//inicialização
     function click(square, currentPlayer) {
       let currentId = square.id;
       if (isGameOver) 
-      return; //return para stop diferente
+      return; 
       if (square.classList.contains('checked') || square.classList.contains('flag')) //check de bomba
       return;
       if (square.classList.contains('bomb')) {      
@@ -100,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => { //tudooooooo dentro do DOM
           square.classList.add('checked');
           if (total == 1) square.classList.add('one');
           if (total == 2) square.classList.add('two');
-          if (total == 3) square.classList.add('three');
+          if (total == 3) square.classList.add('three');//seta os atributos possiveis
           if (total == 4) square.classList.add('four');
           square.innerHTML = total;
           return total;
@@ -115,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => { //tudooooooo dentro do DOM
       const isLeftEdge = (currentId % width === 0);
       const isRightEdge = (currentId % width === width -1); 
       
-     setTimeout(() => {
+     setTimeout(() => { //assincrona uhuul
         if (currentId > 0 && !isLeftEdge) {
           const newId = squares[parseInt(currentId) -1].id;
           const newSquare = document.getElementById(newId);
