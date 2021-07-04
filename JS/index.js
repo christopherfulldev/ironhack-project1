@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => { //tudooooooo dentro do DOM
           leftZero.innerText = placar < 9 ? "0" + (placar +totalPlacar) : placar +totalPlacar ;
         } else {
           let placar2 = rightZero.innerText;
-          placar2 = Number(placar2.replace(/^[0.]+/, ""));
+          placar2 = Number(placar2.replace(/^[0.]+/, ""));//pulo do gato
           rightZero.innerText = placar2 < 9 ? "0" + (placar2 +totalPlacar) : placar2 +totalPlacar ;
         }
         
