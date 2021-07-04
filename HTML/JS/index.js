@@ -1,70 +1,99 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => { //tudooooooo dentro do DOM o.O como event
     const grid = document.querySelector('.grid');
     const flagsLeft = document.querySelector('#flags-left');
-    const result = document.querySelector('#result');
-    let width = 10;
-    let bombAmount = 15; //maquina do jogo
+    const result = document.getElementById('result');
+    const resultTwo = document.getElementById('resultTwo');
+    let width = 9;
+    let bombAmount = 14; 
     let flags = 0;
     let squares = [];
     let isGameOver = false;
-  
-    //criador de campo
+    let leftZero = document.getElementById ("leftZero");
+    let rightZero = document.getElementById ("rightZero");
+    let playerOne = true;
+    let playerTwo = false;
+    let currentPlayer = document.getElementById ("currentPlayer");
+    //criador de campo com tudo exceto as variaveis "globais"
     function createBoard() {
       flagsLeft.innerHTML = bombAmount;
   
-     //criador aleatorio de array by Đăng Khoa Huỳnh
+     //criador aleatorio de array usando sort e random
       const bombsArray = Array(bombAmount).fill('bomb');
       const emptyArray = Array(width*width - bombAmount).fill('valid');
       const gameArray = emptyArray.concat(bombsArray);
       const shuffledArray = gameArray.sort(() => Math.random() -0.5);
+      console.log(shuffledArray);
   
       for(let i = 0; i < width*width; i++) {
-        const square = document.createElement('div');
-        square.setAttribute('id', i);
+        const square = document.createElement('div'); //cria div no DOM
+        square.setAttribute('id', i); //seta um id para as divs
         square.classList.add(shuffledArray[i]);
-        grid.appendChild(square);
-        squares.push(square);
-  
-        //click mouse, se der tempo criar click inverso
-        square.addEventListener('click', function(e) {
-          click(square);
+        grid.appendChild(square);    //insere o grid
+        squares.push(square); //empurra o grid
+        square.addEventListener('click', function(e) { //estranho mas funciona recursividade ++
+        if (playerOne) {
+          currentPlayer.innerText = 'Player 2 Joga';
+          playerOne = false;
+          playerTwo = true;
+          handleClick(square, 1);
+        } else {
+          handleClick(square, 2);
+          playerOne = true;
+          currentPlayer.innerText = 'Player 1 Joga';
+          playerTwo = false;
+      }   
         });
-  
         square.oncontextmenu = function(e) {
           e.preventDefault();
           addFlag(square);
         };
       }
   
-      //adicionador de numeros by cubowania
       for (let i = 0; i < squares.length; i++) {
         let total = 0;
-        const isLeftEdge = (i % width === 0);
+        const isLeftEdge = (i % width === 0); //estrutura de campo
         const isRightEdge = (i % width === width -1);
-  
+
         if (squares[i].classList.contains('valid')) {
           if (i > 0 && !isLeftEdge && squares[i -1].classList.contains('bomb')) total ++;
           if (i > 9 && !isRightEdge && squares[i +1 -width].classList.contains('bomb')) total ++;
           if (i > 10 && squares[i -width].classList.contains('bomb')) total ++;
           if (i > 11 && !isLeftEdge && squares[i -1 -width].classList.contains('bomb')) total ++;
-          if (i < 98 && !isRightEdge && squares[i +1].classList.contains('bomb')) total ++;
-          if (i < 90 && !isLeftEdge && squares[i -1 +width].classList.contains('bomb')) total ++;
-          if (i < 88 && !isRightEdge && squares[i +1 +width].classList.contains('bomb')) total ++;
-          if (i < 89 && squares[i +width].classList.contains('bomb')) total ++;
+          if (i < 74 && !isRightEdge && squares[i +1].classList.contains('bomb')) total ++;
+          if (i < 60 && !isLeftEdge && squares[i -1 +width].classList.contains('bomb')) total ++;
+          if (i < 58 && !isRightEdge && squares[i +1 +width].classList.contains('bomb')) total ++;
+          if (i < 70 && squares[i +width].classList.contains('bomb')) total ++;
           squares[i].setAttribute('data', total);
         }
       }
     }
     
-    createBoard(); //criador funcional de campo
-    function click(square) {
+    function handleClick (square, currentPlayer){
+      let clickValue = click(square, currentPlayer);
+              if(clickValue) {
+                let totalPlacar = Number(clickValue);
+                if (currentPlayer == 1) {
+                  let placar = leftZero.innerText;
+                  placar = Number(placar.replace(/^[0.]+/, ""));
+                  leftZero.innerText = placar < 9 ? "0" + (placar +totalPlacar) : placar +totalPlacar ;
+                } else {
+                  let placar2 = rightZero.innerText;
+                  placar2 = Number(placar2.replace(/^[0.]+/, ""));
+                  rightZero.innerText = placar2 < 9 ? "0" + (placar2 +totalPlacar) : placar2 +totalPlacar ;
+                }
+                
+              }
+    }
+    
+    createBoard();
+    function click(square, currentPlayer) {
       let currentId = square.id;
       if (isGameOver) 
+      return; //return para stop diferente
+      if (square.classList.contains('checked') || square.classList.contains('flag')) //check de bomba
       return;
-      if (square.classList.contains('checked') || square.classList.contains('flag')) 
-      return;
-      if (square.classList.contains('bomb')) {
-        gameOver(square);
+      if (square.classList.contains('bomb')) {      
+        gameOver(square, currentPlayer);
       } else {
         let total = square.getAttribute('data');
         if (total !=0) {
@@ -74,66 +103,66 @@ document.addEventListener('DOMContentLoaded', () => {
           if (total == 3) square.classList.add('three');
           if (total == 4) square.classList.add('four');
           square.innerHTML = total;
-          return;
-        }
-        checkSquare(square, currentId);
+          return total;
+        } 
+        checkSquare(square, currentId, currentPlayer);
       }
       square.classList.add('checked');
     }
-  
-  
-    //verificador de casas ao lado. C/ logica medonha by wolfsbany
-    function checkSquare(square, currentId) {
+
+
+    function checkSquare(square, currentId, currentPlayer) {
       const isLeftEdge = (currentId % width === 0);
       const isRightEdge = (currentId % width === width -1); 
-  
-      setTimeout(() => {
+      
+     setTimeout(() => {
         if (currentId > 0 && !isLeftEdge) {
           const newId = squares[parseInt(currentId) -1].id;
           const newSquare = document.getElementById(newId);
-          click(newSquare);
+          handleClick(newSquare, currentPlayer);
         }
         if (currentId > 9 && !isRightEdge) {
           const newId = squares[parseInt(currentId) +1 -width].id;
           const newSquare = document.getElementById(newId);
-          click(newSquare);
+          handleClick(newSquare, currentPlayer);
         }
         if (currentId > 10) {
           const newId = squares[parseInt(currentId -width)].id;
           const newSquare = document.getElementById(newId);
-          click(newSquare);
+          handleClick(newSquare, currentPlayer);
         }
         if (currentId > 11 && !isLeftEdge) {
           const newId = squares[parseInt(currentId) -1 -width].id;
           const newSquare = document.getElementById(newId);
-          click(newSquare);
+          handleClick(newSquare, currentPlayer);
         }
-        if (currentId < 98 && !isRightEdge) {
+        if (currentId < 74 && !isRightEdge) {
           const newId = squares[parseInt(currentId) +1].id;
           const newSquare = document.getElementById(newId);
-          click(newSquare);
+          handleClick(newSquare, currentPlayer);
         }
-        if (currentId < 90 && !isLeftEdge) {
+        if (currentId < 60 && !isLeftEdge) {
           const newId = squares[parseInt(currentId) -1 +width].id;
           const newSquare = document.getElementById(newId);
-          click(newSquare);
+          handleClick(newSquare, currentPlayer);
         }
-        if (currentId < 88 && !isRightEdge) {
+        if (currentId < 58 && !isRightEdge) {
           const newId = squares[parseInt(currentId) +1 +width].id;
           const newSquare = document.getElementById(newId);
-          click(newSquare);
+          handleClick(newSquare, currentPlayer);
         }
-        if (currentId < 89) {
+        if (currentId < 70) {
           const newId = squares[parseInt(currentId) +width].id;
           const newSquare = document.getElementById(newId);
-          click(newSquare);
+          handleClick(newSquare, currentPlayer);
         }
       }, 10);
     }
   
     //game over 
-    function gameOver(square) {
+    function gameOver(square, currentPlayer) {
       result.innerHTML = 'BOOM! Game Over!';
+      resultTwo.innerHTML = currentPlayer == 1 ? 'PLayer 1 lose' : 'Player 2 lose';
       isGameOver = true;
       squares.forEach(square => {
         if (square.classList.contains('bomb')) {
@@ -143,8 +172,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
     }
+
   
-    //you win
+    //you win 
     function checkForWin() {
     let matches = 0;
   

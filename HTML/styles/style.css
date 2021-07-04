@@ -6,15 +6,13 @@ body {
     background-size: 30vw;
     height: 100vw;
     width: 100vw;
-    background-position: left top;
 }
 
 #game {
-    background-image: url(/Media/Cored-do-Reggae.jpg);
     background-size: 30vw;
     height: 100vw;
     width: 100vw;
-    background-position: left top;
+    background-image: url(/Media/Cored-do-Reggae.jpg);
 }
 
 .hello h1 {
@@ -25,7 +23,7 @@ body {
 .hello p {
     font-size: 3vw;
     text-align: center;
-    color: rgba(0, 255, 34, 0.623);
+    color: black;
 }
 
 .how {
@@ -42,16 +40,19 @@ body {
  }
 
  #p0 {
-     margin: -44vw 0vw 5vw 0vw;
+     margin: -40vw 10vw 8vw 0vw;
+     color:black
  }
  
  #p1 {
      font-size: 2vw;
-     color: rgb(32, 248, 12);
+     color: white;
+     margin: -7vw 0vw 0vw 0vw;
  }
 #p2 {
-    font-size: 2vw;
-    color: rgb(23, 2, 216);
+    font-size: 3vw;
+    color: black;
+    margin: 5vw 0vw 0vw 0vw;
 }
 
 #p3 {
@@ -84,7 +85,7 @@ body {
     width: 40vw;
     height:40vw;
     align-content: center;
-    margin: 0vw 0vw 0vw 32vw;
+    margin: 0vw 0vw 0vw 26vw;
   }
   
   .grid {
@@ -92,8 +93,8 @@ body {
     width: 40vw;
     display: flex;
     flex-wrap: wrap;
-    background-color: #dcd6bc;
-    border: 1vw solid #dcd6bc;
+    background-color: green;
+    border: 1vw solid yellow;
   }
   
   div {
@@ -122,14 +123,13 @@ body {
   .bomb {
     height: 4vw;
     width: 4vw;
-    border: 0.3vw solid;
+    border: 0.5vw solid;
     border-color: #f5f3eb #bab7a9 #bab7a9 #fff9db;
     box-sizing: border-box;
   }
   
   .one {
     color: #e76346;
-    background-image: url("/home/visitante/ironhack/Project1/HTML/Media/folha verde.jpg");
   }
   
   .two {
@@ -145,8 +145,37 @@ body {
   }
   
   #result {
-    margin-top: 0.5vw;
+    /*margin-top: 0.5vw;*/
     color: #e76346;
+    margin: -45vw -65vw 0vw 0vw;
+    color: white;
+  }
+  
+
+  .rasta2 {
+    width: 20vw;
+
   }
 
-  
+  #timer{
+    float: right;
+    margin: 0vw -17vw;
+    color: white;
+
+  }
+  .container p {
+    float: right;
+    margin: 5vw -16vw;
+    color:white;
+  }
+
+  #currentPlayer {
+    margin: 10vw -20vw;
+  }
+
+#resultTwo {
+  color:red;
+  font-size: 10vw;
+  margin: ;
+
+}
