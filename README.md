@@ -5,7 +5,7 @@
 [![Build Status][travis-image]][travis-url]
 [![Downloads Stats][npm-downloads]][npm-url]
 
-Multiplayer and Featured Minesweeper Game. Fun and simple.
+Multiplayer, reponsive and Featured Minesweeper Game. Fun and simple.
 
 Play Happy!!!
 

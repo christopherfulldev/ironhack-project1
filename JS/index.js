@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => { //tudooooooo dentro do DOM
         square.addEventListener('click', function(e) { //estranho mas funciona recursividade ++
         if (playerOne) {
           currentPlayer.innerText = 'Player 2 Joga';
-          playerOne = false;
+          playerOne = false;      //handleClick trocando entre players
           playerTwo = true;
           handleClick(square, 1);
         } else {
@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => { //tudooooooo dentro do DOM
         const isLeftEdge = (i % width === 0); //estrutura de campo
         const isRightEdge = (i % width === width -1);
 
-        if (squares[i].classList.contains('valid')) {
+        if (squares[i].classList.contains('valid')) { //check's
           if (i > 0 && !isLeftEdge && squares[i -1].classList.contains('bomb')) total ++;
           if (i > 9 && !isRightEdge && squares[i +1 -width].classList.contains('bomb')) total ++;
           if (i > 10 && squares[i -width].classList.contains('bomb')) total ++;
@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => { //tudooooooo dentro do DOM
           square.innerHTML = total;
           return total;
         } 
-        checkSquare(square, currentId, currentPlayer);
+        checkSquare(square, currentId, currentPlayer); //currentPlayer foi adicionado
       }
       square.classList.add('checked');
     }
@@ -166,7 +166,7 @@ document.addEventListener('DOMContentLoaded', () => { //tudooooooo dentro do DOM
     //game over 
     function gameOver(square, currentPlayer) {
       result.innerHTML = 'BOOM! Game Over!';
-      resultTwo.innerHTML = currentPlayer == 1 ? 'PLayer 1 lose' : 'Player 2 lose';
+      resultTwo.innerHTML = currentPlayer == 1 ? 'PLayer 1 Lose' : 'Player 2 Lose'; //ternarios :p
       isGameOver = true;
       squares.forEach(square => {
         if (square.classList.contains('bomb')) {
