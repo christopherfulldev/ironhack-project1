@@ -13,6 +13,9 @@ document.addEventListener('DOMContentLoaded', () => { //tudooooooo dentro do DOM
     let playerOne = true;
     let playerTwo = false;
     let currentPlayer = document.getElementById ("currentPlayer");
+    const music = new Audio();
+    music.src = "";
+    music.volume = 0.3;
     
     function createBoard() {
       flagsLeft.innerHTML = bombAmount;
@@ -112,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => { //tudooooooo dentro do DOM
     }
 
 
-    function checkSquare(square, currentId, currentPlayer) {
+    function checkSquare(square, currentId, currentPlayer) { 
       const isLeftEdge = (currentId % width === 0);
       const isRightEdge = (currentId % width === width -1); 
       
