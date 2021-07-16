@@ -19,7 +19,7 @@ Fun multiplayer game, call a friend and get started. This amazing version brings
 
 Christopher Pinto – [@christopherfulldev](https://twitter.com/...) – christopher.all@hotmail.com
 
-Distributed as-is and without guarantees rs. Free code to be used partially or completely.
+Distributed as-is and without guarantees. Free code to be used partially or completely.
 
 [https://github.com/christopherfulldev] (https://christopherfulldev.github.io/ironhack-project1/)
 
@@ -36,14 +36,6 @@ There were several other sources of research and relationship for the implementa
 For these a special thank you.
 
 
-
-## Contributing
-
-1. Faça o _fork_ do projeto (https://christopherfulldev.github.io/ironhack-project1/)
-2. Crie uma _branch_ para sua modificação (`git checkout -b feature/fooBar`)
-3. Faça o _commit_ (`git commit -am 'Add some fooBar'`)
-4. _Push_ (`git push origin feature/fooBar`)
-5. Crie um novo _Pull Request_
 
 [npm-image]: https://img.shields.io/npm/v/datadog-metrics.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/datadog-metrics
